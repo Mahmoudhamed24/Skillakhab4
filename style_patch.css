@@ -1,0 +1,136 @@
+/* ═══════════════════════════════════════════════
+   Skillak style_patch.css — v2.0 Enhancements
+   أضف هذا الملف بعد style.css في index.html
+═══════════════════════════════════════════════ */
+
+/* ── Dual Dashboard (both role) ── */
+.dual-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+@media (max-width: 600px) {
+  .dual-stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Session Entry Button glow ── */
+.btn-enter-session {
+  background: linear-gradient(135deg, var(--teal), var(--teal2)) !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  letter-spacing: .03em;
+  animation: pulse-teal 2s infinite;
+  box-shadow: 0 0 0 0 rgba(13,110,117,.5);
+}
+@keyframes pulse-teal {
+  0%   { box-shadow: 0 0 0 0 rgba(13,110,117,.45); }
+  60%  { box-shadow: 0 0 0 8px rgba(13,110,117,.0); }
+  100% { box-shadow: 0 0 0 0 rgba(13,110,117,.0); }
+}
+
+/* ── Admin Reviews Enhancement ── */
+.tutor-rev-detail {
+  border-radius: 14px;
+  background: var(--cream2);
+  padding: 16px;
+  margin-top: 12px;
+}
+
+/* ── Commission badge ── */
+.commission-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--teal3), rgba(245,158,11,.08));
+  border: 1.5px solid var(--amber);
+  border-radius: 50px;
+  padding: 5px 14px;
+  font-size: .82rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* ── Session notify toast ── */
+.session-confirm-banner {
+  position: fixed;
+  bottom: calc(var(--bnH, 72px) + 12px);
+  right: 50%;
+  transform: translateX(50%);
+  background: linear-gradient(135deg, var(--teal), var(--teal2));
+  color: #fff;
+  padding: 13px 22px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: .9rem;
+  z-index: 9999;
+  box-shadow: 0 6px 28px rgba(13,110,117,.35);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideUpBanner .35s cubic-bezier(.25,.46,.45,.94);
+  max-width: 92vw;
+}
+@keyframes slideUpBanner {
+  from { opacity: 0; transform: translateX(50%) translateY(20px); }
+  to   { opacity: 1; transform: translateX(50%) translateY(0); }
+}
+.session-confirm-banner button {
+  background: rgba(255,255,255,.25);
+  border: 1px solid rgba(255,255,255,.4);
+  color: #fff;
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: .82rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ── Dual dashboard stat cards ── */
+.dual-sc {
+  background: rgba(255,255,255,.14);
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+.dual-sc .dual-val {
+  font-size: 1.6rem;
+  font-weight: 900;
+  font-family: 'Fraunces', serif;
+  line-height: 1;
+  margin: 4px 0;
+}
+.dual-sc .dual-ic { font-size: 1.1rem; }
+.dual-sc .dual-lbl {
+  font-size: .64rem;
+  opacity: .75;
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+/* ── Admin tutor review stars ── */
+.rev-stars { color: var(--amber); letter-spacing: .05em; }
+
+/* ── Hide platform profit from non-admin (belt+suspenders) ── */
+[data-platform-only] { display: none; }
+body.is-admin [data-platform-only] { display: revert; }
+
+/* ── Session entry button in booking card ── */
+.bkcard-actions .btn-enter {
+  background: linear-gradient(135deg, #0d6e75, #14b8a6) !important;
+  color: #fff !important;
+  font-weight: 800;
+  letter-spacing: .025em;
+  position: relative;
+}
+.bkcard-actions .btn-enter::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #0d6e75, #14b8a6);
+  opacity: .25;
+  filter: blur(6px);
+  z-index: -1;
+}
